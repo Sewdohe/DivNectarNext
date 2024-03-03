@@ -55,7 +55,7 @@ export default function App() {
           </Button>
         </NavbarItem> */}
       </NavbarContent>
-      <NavbarMenu>
+      <NavbarMenu className="dark">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
