@@ -8,8 +8,8 @@ interface MyProps {
 //@ts-ignore
 export default function Layout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en" className='dark'>
+    <div className='dark '>
       { children }
-    </html>
+    </div>
   )
 }

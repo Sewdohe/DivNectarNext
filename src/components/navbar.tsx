@@ -9,9 +9,9 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
+    "Home",
+    "Servers",
+    "Services",
   ];
 
   return (
@@ -28,22 +28,13 @@ export default function App() {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Home
-          </Link>
-        </NavbarItem>
-        {/* <NavbarItem isActive> */}
-        <NavbarItem>
-          <Link href="#" aria-current="page">
-            Server
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Services
-          </Link>
-        </NavbarItem>
+        { menuItems.map(item => (
+          <NavbarItem>
+            <Link color="foreground" href="#">
+              {item}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
       <NavbarContent justify="end">
         {/* <NavbarItem className="hidden lg:flex">
