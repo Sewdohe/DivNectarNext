@@ -9,6 +9,7 @@ import ServerStatus from "../components/server-status";
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout>
+      <h1 className="text-7xl text-center font-extrabold bg-gradient-to-r from-cyan-300 to-violet-700 bg-clip-text text-transparent">&lt;DivNectar/&gt;</h1>
     </Layout>
   )
 }
