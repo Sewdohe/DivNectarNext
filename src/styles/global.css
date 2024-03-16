@@ -6,3 +6,19 @@
     height: 35px;
     margin-right: 8px;
 }
+
+::-webkit-scrollbar {
+    width: 2px;
+    background: transparent;
+    border-radius: 2px;;
+ }
+ 
+ ::-webkit-scrollbar-thumb {
+    background: #ab00b4;
+    width: 4px;
+    border-radius: 2px;
+ }
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}

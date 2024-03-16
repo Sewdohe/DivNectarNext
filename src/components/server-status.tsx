@@ -3,6 +3,8 @@ import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@n
 
 interface ServerProps {
     uri: string
+    title: string
+    connectionUrl: string
 }
 
 interface ServerResponse {
@@ -53,8 +55,8 @@ export default function ServerStatus(props: ServerProps) {
                             width={40}
                         />
                         <div className="flex flex-col">
-                            <p className="text-md">Server Status</p>
-                            <p className="text-small text-default-500">{serverData.hostname}</p>
+                            <p className="text-md">{props.title}</p>
+                            <p className="text-small text-default-500">{props.connectionUrl}</p>
                         </div>
                     </CardHeader>
                     <Divider />
