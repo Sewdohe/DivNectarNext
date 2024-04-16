@@ -21,7 +21,27 @@ interface ServerResponse {
   version?: number
 }
 
+interface PAPIResponse {
+  status: string,
+  placeholder: string
+}
+
 export default function ServerStatus(props: ServerProps) {
+
+  // Prepare request for PAPI API
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer testingthis");
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Access-Control-Allow-Origin", "*")
+  const raw = JSON.stringify({
+    "placeholder": "%playerlist_online_list%",
+    "player": false
+  });
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+  };
 
   const [serverData, setServerData] = useState<ServerResponse>({
     players: {},
@@ -30,6 +50,8 @@ export default function ServerStatus(props: ServerProps) {
     }
   });
   const uri = `https://api.mcsrvstat.us/3/${props.uri}`
+  const papi_uri = 'https://minecraftapi.divnectar.com/api/placeholder'
+
   console.log(uri)
 
   useEffect(() => {
@@ -39,7 +61,13 @@ export default function ServerStatus(props: ServerProps) {
       .then((resultData: ServerResponse) => {
         console.log(resultData)
         setServerData(resultData)
-      }) // set data for the number of stars
+      }); // set data for the number of stars
+
+    fetch(papi_uri, { method: "POST", headers: myHeaders })
+      .then(response => response.json())
+      .then((data: any) => {
+        console.log(data)
+      });
   }, [])
 
   return (
@@ -60,7 +88,9 @@ export default function ServerStatus(props: ServerProps) {
             </div>
           </CardHeader>
           <Divider />
-          <CardBody>{serverData.motd.html.map((line) => <p dangerouslySetInnerHTML={{ __html: line }}></p>)}</CardBody>
+          <CardBody>
+            {serverData.motd.html.map((line) => <p dangerouslySetInnerHTML={{ __html: line }}></p>)}
+          </CardBody>
           <CardBody>
 
             {serverData.players ? (
