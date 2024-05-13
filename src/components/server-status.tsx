@@ -50,7 +50,7 @@ export default function ServerStatus(props: ServerProps) {
     }
   });
   const uri = `https://api.mcsrvstat.us/3/${props.uri}`
-  const papi_uri = 'https://minecraftapi.divnectar.com/api/placeholder'
+  const papi_uri = '/api/placeholder'
 
   console.log(uri)
 

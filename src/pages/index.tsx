@@ -1,15 +1,25 @@
 import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
+import { Link, type HeadFC, type PageProps } from "gatsby"
 import { Providers } from "../providers";
 // import {NextUIProvider} from "@nextui-org/system";
 import Layout from "../components/layout";
 import ServerStatus from "../components/server-status";
+import PaddedContainer from "../components/building-blocks/PaddedContainer";
+import P from "../components/building-blocks/Paragraph";
 
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout>
-      <h1 className="sm:text-3xl text-7xl text-center font-extrabold bg-gradient-to-r from-cyan-300 to-violet-700 bg-clip-text text-transparent">&lt;DivNectar/&gt;</h1>
+      <PaddedContainer>
+        <h1 className="text-2xl font-extrabold">DivNectar Home</h1>
+        <P>
+          Welcome to DivNectar!
+        </P>
+        <P>This is my simple abode. I plan to flesh the site out and make it more interactive in the near future. As for now, you
+          can basically just check the status of both my Minecraft servers <Link to="/servers">here.</Link>
+        </P>
+      </PaddedContainer>
     </Layout>
   )
 }
