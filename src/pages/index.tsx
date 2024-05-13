@@ -6,6 +6,8 @@ import Layout from "../components/layout";
 import ServerStatus from "../components/server-status";
 import PaddedContainer from "../components/building-blocks/PaddedContainer";
 import P from "../components/building-blocks/Paragraph";
+import CTA from "../components/building-blocks/CTA";
+import { SEO } from "../components/SEO";
 
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -14,11 +16,12 @@ const IndexPage: React.FC<PageProps> = () => {
       <PaddedContainer>
         <h1 className="text-2xl font-extrabold">DivNectar Home</h1>
         <P>
-          Welcome to DivNectar!
+          Welcome!
         </P>
         <P>This is my simple abode. I plan to flesh the site out and make it more interactive in the near future. As for now, you
           can basically just check the status of both my Minecraft servers <Link to="/servers">here.</Link>
         </P>
+        <CTA></CTA>
       </PaddedContainer>
     </Layout>
   )
@@ -26,4 +29,6 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage
 
-export const Head: HeadFC = () => <title>Home Page</title>
+export const Head = () => (
+  <SEO title="DivNectar Home" />
+)

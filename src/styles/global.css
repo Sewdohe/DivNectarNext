@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    font-size: 1.2rem;
+}
+
+h1 {
+    margin-top: 12px;
+}
+
+a {
+  color: purple;  
+}
+
 .logo-img {
     height: 35px;
     margin-right: 8px;

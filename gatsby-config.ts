@@ -3,7 +3,10 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `DivNectar`,
-    siteUrl: `https://www.divnectar.com`
+    siteUrl: `https://www.divnectar.com`,
+    description: `Digital home of Sewdohe`,
+    twitterUsername: '@sewdohe',
+    image: '/logo.png'
   },
   proxy: {
     prefix: "/api",
@@ -19,20 +22,28 @@ const config: GatsbyConfig = {
       "icon": "src/images/icon.png"
     }
   }, "gatsby-plugin-mdx", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "images",
-      "path": "./src/images/"
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        "name": "images",
+        "path": "./src/images/"
+      },
+      __key: "images"
+    }, {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        "name": "pages",
+        "path": "./src/pages/"
+      },
+      __key: "pages"
     },
-    __key: "images"
-  }, {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "pages",
-      "path": "./src/pages/"
-    },
-    __key: "pages"
-  }]
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        "name": "blog",
+        "path": "./src/blog/"
+      },
+      __key: "blog"
+    }]
 };
 
 export default config;

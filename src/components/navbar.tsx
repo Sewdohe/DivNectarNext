@@ -20,8 +20,8 @@ export default function App() {
       route: "/servers"
     },
     {
-      name: "Services",
-      route: "/services"
+      name: "Non-Exist",
+      route: "/nothing"
     },
   ];
 
@@ -43,6 +43,7 @@ export default function App() {
           <NavbarItem>
             <Link color="foreground" to={item.route} activeStyle={{
               color: "#de0ee9",
+              textDecoration: 'underline',
               fontWeight: 700
             }}>
               {item.name}
