@@ -21,8 +21,8 @@ export default function App() {
       route: "/servers"
     },
     {
-      name: "Non-Exist",
-      route: "/nothing"
+      name: "Blog",
+      route: "/blog"
     },
   ];
 
