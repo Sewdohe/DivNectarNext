@@ -16,7 +16,7 @@ const IndexPage = ({
 }) => {
     return (
         <Layout>
-            <div className="bg-white py-24 sm:py-32">
+            <div className="py-24 sm:py-32">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl">
                         <h1 className="text-2xl font-extrabold">DivNectar Blog</h1>
@@ -30,7 +30,7 @@ const IndexPage = ({
                                         </time>
                                         <a
                                             href={'blog/' + post.frontmatter.slug}
-                                            className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+                                            className="relative z-10 rounded-full px-3 py-1.5 font-medium text-gray-600"
                                         >
                                             {post.frontmatter.title}
                                         </a>
