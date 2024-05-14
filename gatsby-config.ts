@@ -10,7 +10,7 @@ const config: GatsbyConfig = {
   },
   proxy: {
     prefix: "/api",
-    url: "https://minecraftapi.divnectar.com",
+    url: "https://api.divnectar.com",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

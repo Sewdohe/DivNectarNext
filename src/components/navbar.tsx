@@ -4,6 +4,7 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, Navba
 //@ts-ignore
 import logo from "../images/logo.png" // Tell webpack this JS file uses this image
 import { Link } from "gatsby"
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -40,7 +41,7 @@ export default function App() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {menuItems.map(item => (
-          <NavbarItem>
+          <NavbarItem key={uuidv4()}>
             <Link color="foreground" to={item.route} activeStyle={{
               color: "#de0ee9",
               textDecoration: 'underline',
@@ -55,7 +56,7 @@ export default function App() {
       </NavbarContent> */}
       <NavbarMenu className="dark">
         {menuItems.map((item, index) => (
-          <NavbarMenuItem className="dark" key={`${item}-${index}`}>
+          <NavbarMenuItem className="dark" key={uuidv4()}>
             <Link
               color={
                 index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"

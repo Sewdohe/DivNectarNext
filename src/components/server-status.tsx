@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
+import { v4 as uuidv4 } from 'uuid';
 
 interface ServerProps {
   uri: string
@@ -34,7 +35,7 @@ export default function ServerStatus(props: ServerProps) {
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append("Access-Control-Allow-Origin", "*")
   const raw = JSON.stringify({
-    "placeholder": "%playerlist_online_list%",
+    "placeholder": "%server_uptime%",
     "player": false
   });
   const requestOptions = {
@@ -61,19 +62,21 @@ export default function ServerStatus(props: ServerProps) {
       .then((resultData: ServerResponse) => {
         console.log(resultData)
         setServerData(resultData)
-      }); // set data for the number of stars
-
-    fetch(papi_uri, { method: "POST", headers: myHeaders })
-      .then(response => response.json())
-      .then((data: any) => {
-        console.log(data)
       });
+
+    // minecraft API broken for now...just be happy with the data
+    // we have I guess.
+    // fetch(papi_uri, { method: "POST", headers: myHeaders })
+    //   .then(response => response.json())
+    //   .then((data: any) => {
+    //     console.log(data)
+    //   });
   }, [])
 
   return (
     <div className="flex">
       {serverData ? (
-        <Card className="w-[550px] p-4 max-w-sm m-6">
+        <Card className="sm:w-full p-4 max-w-sm m-6">
           <CardHeader className="flex gap-3">
             <Image
               alt="nextui logo"
@@ -89,7 +92,7 @@ export default function ServerStatus(props: ServerProps) {
           </CardHeader>
           <Divider />
           <CardBody>
-            {serverData.motd.html.map((line) => <p dangerouslySetInnerHTML={{ __html: line }}></p>)}
+            {serverData.motd.html.map((line) => <p key={uuidv4()} dangerouslySetInnerHTML={{ __html: line }}></p>)}
           </CardBody>
           <CardBody>
 
