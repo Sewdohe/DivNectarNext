@@ -29,14 +29,14 @@ export default function App() {
   return (
     <Navbar isBordered onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
         <NavbarBrand>
           <img className="logo-img" src={logo} alt="Logo" />
           <p className="font-bold text-inherit">&lt;DivNectar/&gt;</p>
         </NavbarBrand>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
