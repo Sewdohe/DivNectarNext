@@ -35,7 +35,22 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    "gatsby-plugin-mdx",
+    "gatsby-plugin-mdx-frontmatter",
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [".mdx"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-highlight-code`,
+            options: {
+              terminal: "carbon",
+              theme: "one-dark",
+            },
+          },
+        ],
+      },
+    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp", {
       resolve: 'gatsby-source-filesystem',

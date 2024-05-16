@@ -5,18 +5,21 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import PaddedContainer from "../components/building-blocks/PaddedContainer"
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+
 
 
 const shortcodes = { Link, Layout } // Provide common components here
 
 export default function PageTemplate({ data, children }) {
   let featuredImg = getImage(data.mdx.frontmatter.featuredImage?.childImageSharp?.gatsbyImageData)
+  deckDeckGoHighlightElement();
 
   return (
     <Layout>
-      <div className="flex flex-row align-middle justify-center">
-        <span className="text-3xl mx-w-md inline-block font-extrabold self-center">{data.mdx.frontmatter.title}</span>
-        <GatsbyImage className="max-w-sm md:max-w-md flex-grow-0 inline-block" image={featuredImg} />
+      <div className="flex flex-col align-middle justify-center">
+        <span className="text-3xl text-white mt-2 text-center mx-w-md inline-block font-extrabold self-center">{data.mdx.frontmatter.title}</span>
+        <GatsbyImage alt="featuredImage" className="mx-auto md:mx-0 flex-grow-0 inline-block" image={featuredImg} />
       </div>
       <PaddedContainer>
         <MDXProvider components={shortcodes}>
@@ -34,7 +37,7 @@ export const query = graphql`
         title
         featuredImage {
           childImageSharp {
-            gatsbyImageData(width: 800)
+            gatsbyImageData(width: 200)
           }
         }
       }
