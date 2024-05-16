@@ -35,23 +35,36 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    "gatsby-plugin-mdx-frontmatter",
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [".mdx"],
         gatsbyRemarkPlugins: [
           {
-            resolve: `gatsby-remark-highlight-code`,
+            resolve: `gatsby-remark-images`,
             options: {
-              terminal: "carbon",
-              theme: "one-dark",
+              maxWidth: 1200,
             },
           },
         ],
       },
     },
-    "gatsby-plugin-sharp",
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`, `png`, `jpg`],
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        }
+      }
+    },
     "gatsby-transformer-sharp", {
       resolve: 'gatsby-source-filesystem',
       options: {
