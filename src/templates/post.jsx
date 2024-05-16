@@ -3,25 +3,40 @@ import { graphql } from "gatsby"
 import { MDXProvider } from "@mdx-js/react"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import PaddedContainer from "../components/building-blocks/PaddedContainer"
+
 
 const shortcodes = { Link, Layout } // Provide common components here
 
 export default function PageTemplate({ data, children }) {
+  let featuredImg = getImage(data.mdx.frontmatter.featuredImage?.childImageSharp?.gatsbyImageData)
+
   return (
     <Layout>
-      <h1 className="text-3xl font-extrabold">{data.mdx.frontmatter.title}</h1>
-      <MDXProvider components={shortcodes}>
-        {children}
-      </MDXProvider>
+      <div className="flex flex-row align-middle justify-center">
+        <span className="text-3xl mx-w-md inline-block font-extrabold self-center">{data.mdx.frontmatter.title}</span>
+        <GatsbyImage className="max-w-sm md:max-w-md flex-grow-0 inline-block" image={featuredImg} />
+      </div>
+      <PaddedContainer>
+        <MDXProvider components={shortcodes}>
+          {children}
+        </MDXProvider>
+      </PaddedContainer>
     </Layout>
   )
 }
 
 export const query = graphql`
-  query($id: String!) {
+  query PostTemplate($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title
+        featuredImage {
+          childImageSharp {
+            gatsbyImageData(width: 800)
+          }
+        }
       }
     }
   }
