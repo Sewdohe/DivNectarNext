@@ -43,7 +43,7 @@ export const Head = ({ data }) => (
       "datePublished": "${data.mdx.frontmatter.date}",
       "dateModified": "${data.mdx.frontmatter.date}",
       "image: [
-        "${data.mdx.frontmatter.featuredImage.childImageSharp.gatsbyImageData.images.fallback.src}"
+        "https://divnectar.com${data.mdx.frontmatter.featuredImage.childImageSharp.gatsbyImageData.images.fallback.src}"
       ]
       "author": [{
           "@type": "Person",
