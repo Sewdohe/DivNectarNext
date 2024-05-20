@@ -32,6 +32,8 @@ export type SeoProps = {
    * If not given, the default image will be used.
    */
   featuredImage?: ImageDataType;
+
+  children: React.ReactNode;
 };
 
 export default function Seo(props: SeoProps) {
@@ -146,6 +148,7 @@ export default function Seo(props: SeoProps) {
       {metas.map(meta => (
         <meta key={meta.name} name={meta.name} content={meta.content!} />
       ))}
+      { props.children }
     </>
   );
 }
