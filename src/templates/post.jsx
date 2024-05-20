@@ -40,8 +40,8 @@ export const Head = ({ data }) => (
       "@context": "https://schema.org",
       "@type": "NewsArticle",
       "headline": "${data.mdx.frontmatter.title}",
-      "datePublished": ${data.mdx.frontmatter.date},
-      "dateModified": ${data.mdx.frontmatter.date},
+      "datePublished": "${data.mdx.frontmatter.date}",
+      "dateModified": "${data.mdx.frontmatter.date}",
       "author": [{
           "@type": "Person",
           "name": "Sewdohe",
