@@ -6,6 +6,8 @@ import Layout from "../components/layout"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import PaddedContainer from "../components/building-blocks/PaddedContainer"
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+import { SEO } from "../components/SEO";
+
 
 
 
@@ -30,11 +32,36 @@ export default function PageTemplate({ data, children }) {
   )
 }
 
+export const Head = ({ data }) => (
+  <SEO title={data.mdx.frontmatter.title} description={data.mdx.excerpt}>
+    <script type="application/ld+json">
+    {`
+      {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": ${data.mdx.frontmatter.title},
+      "image": [
+        ${data.mdx.frontmatter.featuredImage.childImageSharp.gatsbyImageData},
+       ],
+      "datePublished": ${data.mdx.frontmatter.date},
+      "dateModified": ${data.mdx.frontmatter.date},
+      "author": [{
+          "@type": "Person",
+          "name": "Sewdohe",
+          "url": "https://divnectar.com/sewdohe"
+        }]
+    }
+    `}
+    </script>
+  </SEO>
+)
+
 export const query = graphql`
   query PostTemplate($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title
+        date
         featuredImage {
           childImageSharp {
             gatsbyImageData(width: 200)
