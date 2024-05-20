@@ -21,6 +21,12 @@ const config: GatsbyConfig = {
     "gatsby-plugin-image",
     "gatsby-plugin-slug",
     {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://www.divnectar.com`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sitemap',
       options: {
         output: "/sitemap",
