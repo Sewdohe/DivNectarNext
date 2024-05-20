@@ -41,7 +41,7 @@ export const Head = ({ data }) => (
       "@type": "NewsArticle",
       "headline": "${data.mdx.frontmatter.title}",
       "image": [
-        "${data.mdx.frontmatter.featuredImage.childImageSharp.original.src}",
+        "${data.mdx.frontmatter.featuredImage.childImageSharp}",
        ],
       "datePublished": ${data.mdx.frontmatter.date},
       "dateModified": ${data.mdx.frontmatter.date},
@@ -65,9 +65,6 @@ export const query = graphql`
         featuredImage {
           childImageSharp {
             gatsbyImageData(width: 200)
-          }
-          original {
-            src
           }
         }
       }
