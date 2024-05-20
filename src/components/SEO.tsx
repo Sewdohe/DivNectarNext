@@ -139,13 +139,13 @@ export default function Seo(props: SeoProps) {
   }
 
   return (
-    <Helmet>
+    <>
       <html lang="en" />
       <meta charSet="utf-8" />
       <title>{title}</title>
       {metas.map(meta => (
         <meta key={meta.name} name={meta.name} content={meta.content} />
       ))}
-    </Helmet>
+    </>
   );
 }

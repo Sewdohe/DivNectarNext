@@ -20,7 +20,13 @@ const config: GatsbyConfig = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-image",
     "gatsby-plugin-slug",
-    "gatsby-plugin-sitemap",
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        output: "/sitemap",
+        createLinkInHead: true
+      }
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
