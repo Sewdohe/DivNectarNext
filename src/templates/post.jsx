@@ -39,9 +39,9 @@ export const Head = ({ data }) => (
       {
       "@context": "https://schema.org",
       "@type": "NewsArticle",
-      "headline": ${data.mdx.frontmatter.title},
+      "headline": "${data.mdx.frontmatter.title}",
       "image": [
-        ${data.mdx.frontmatter.featuredImage.childImageSharp.gatsbyImageData},
+        "${data.mdx.frontmatter.featuredImage.childImageSharp.original.src}",
        ],
       "datePublished": ${data.mdx.frontmatter.date},
       "dateModified": ${data.mdx.frontmatter.date},
@@ -65,6 +65,9 @@ export const query = graphql`
         featuredImage {
           childImageSharp {
             gatsbyImageData(width: 200)
+          }
+          original {
+            src
           }
         }
       }
