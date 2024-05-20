@@ -44,7 +44,7 @@ export const Head = ({ data }) => (
       "dateModified": "${data.mdx.frontmatter.date}",
       "image: [
         "https://divnectar.com${data.mdx.frontmatter.featuredImage.childImageSharp.gatsbyImageData.images.fallback.src}"
-      ]
+      ],
       "author": [{
           "@type": "Person",
           "name": "Sewdohe",
