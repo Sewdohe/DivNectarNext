@@ -13,6 +13,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             slug
             title
             author
+            featuredImage {
+              name
+            }
           }
           internal {
             contentFilePath
@@ -39,7 +42,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
       // You can use the values in this context in
       // our page layout component
-      context: { id: node.id },
+      context: { id: node.id, image: node.frontmatter.featuredImage.name },
     })
   })
 }

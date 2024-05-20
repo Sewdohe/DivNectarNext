@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, PageProps } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { useLocation } from '@reach/router';
 // import { useSiteMetadata } from "../hooks/use-site-metadata"
@@ -37,7 +37,7 @@ export type SeoProps = {
 export default function Seo(props: SeoProps) {
   // first get our default data from gatsby config and default featured image
   const { site, featuredImage } =
-    useStaticQuery<any>(graphql`
+    useStaticQuery<Queries.SeoMetaDataQuery>(graphql`
       query SeoMetaData {
         site {
           siteMetadata {
@@ -126,7 +126,7 @@ export default function Seo(props: SeoProps) {
     },
     {
       name: 'twitter:creator',
-      content: site!.siteMetadata!.twitterUsername,
+      content: '@Sewdohe',
     },
   ];
 
@@ -144,7 +144,7 @@ export default function Seo(props: SeoProps) {
       <meta charSet="utf-8" />
       <title>{title}</title>
       {metas.map(meta => (
-        <meta key={meta.name} name={meta.name} content={meta.content} />
+        <meta key={meta.name} name={meta.name} content={meta.content!} />
       ))}
     </>
   );

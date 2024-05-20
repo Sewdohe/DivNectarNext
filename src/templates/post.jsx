@@ -33,7 +33,7 @@ export default function PageTemplate({ data, children }) {
 }
 
 export const Head = ({ data }) => (
-  <SEO title={data.mdx.frontmatter.title} description={data.mdx.excerpt}>
+  <SEO title={data.mdx.frontmatter.title} featuredImage={data.mdx.frontmatter.featuredImage.gatsbyImageData} description={data.mdx.excerpt}>
     <script type="application/ld+json">
     {`
       {
@@ -66,12 +66,5 @@ export const query = graphql`
         }
       }
     }
-    featuredImage: file(
-          absolutePath: { glob: "**/src/images/logo.png" }
-        ) {
-          childImageSharp {
-            gatsbyImageData(layout: FIXED, width: 1200)
-          }
-        }
   }
 `
