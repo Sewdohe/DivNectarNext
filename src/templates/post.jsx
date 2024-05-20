@@ -40,9 +40,6 @@ export const Head = ({ data }) => (
       "@context": "https://schema.org",
       "@type": "NewsArticle",
       "headline": "${data.mdx.frontmatter.title}",
-      "image": [
-        "${data.mdx.frontmatter.featuredImage.childImageSharp}",
-       ],
       "datePublished": ${data.mdx.frontmatter.date},
       "dateModified": ${data.mdx.frontmatter.date},
       "author": [{
