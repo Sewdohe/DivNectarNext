@@ -42,6 +42,9 @@ export const Head = ({ data }) => (
       "headline": "${data.mdx.frontmatter.title}",
       "datePublished": "${data.mdx.frontmatter.date}",
       "dateModified": "${data.mdx.frontmatter.date}",
+      "image: [
+        "${data.mdx.frontmatter.featuredImage.childImageSharp.gatsbyImageData.images.fallback.src}"
+      ]
       "author": [{
           "@type": "Person",
           "name": "Sewdohe",
