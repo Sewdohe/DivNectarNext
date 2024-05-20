@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import PaddedContainer from "../components/building-blocks/PaddedContainer"
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
-import { SEO } from "../components/SEO";
+import SEO from "../components/SEO";
 
 
 
@@ -65,6 +65,13 @@ export const query = graphql`
           }
         }
       }
+      featuredImage: file(
+          absolutePath: { glob: "**/src/images/logo.png" }
+        ) {
+          childImageSharp {
+            gatsbyImageData(layout: FIXED, width: 1200)
+          }
+        }
     }
   }
 `

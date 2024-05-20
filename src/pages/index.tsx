@@ -7,7 +7,7 @@ import ServerStatus from "../components/server-status";
 import PaddedContainer from "../components/building-blocks/PaddedContainer";
 import P from "../components/building-blocks/Paragraph";
 import CTA from "../components/building-blocks/CTA";
-import { SEO } from "../components/SEO";
+import SEO from "../components/SEO";
 
 
 const IndexPage: React.FC<PageProps> = () => {
