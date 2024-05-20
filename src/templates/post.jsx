@@ -65,13 +65,13 @@ export const query = graphql`
           }
         }
       }
-      featuredImage: file(
+    }
+    featuredImage: file(
           absolutePath: { glob: "**/src/images/logo.png" }
         ) {
           childImageSharp {
             gatsbyImageData(layout: FIXED, width: 1200)
           }
         }
-    }
   }
 `

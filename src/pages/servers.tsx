@@ -4,7 +4,7 @@ import NavBar from "../components/navbar"
 // import {NextUIProvider} from "@nextui-org/system";
 import Layout from "../components/layout";
 import ServerStatus from "../components/server-status";
-import { SEO } from "../components/SEO";
+import SEO from "../components/SEO";
 
 
 const IndexPage: React.FC<PageProps> = () => {
