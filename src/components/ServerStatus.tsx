@@ -6,6 +6,7 @@ interface ServerProps {
   uri: string
   title: string
   connectionUrl: string
+  pageLink: string
 }
 
 interface ServerResponse {
@@ -77,38 +78,40 @@ export default function ServerStatus(props: ServerProps) {
     <div className="flex">
       {serverData ? (
         <Card className="sm:w-full p-4 max-w-sm m-6">
-          <CardHeader className="flex gap-3">
-            <Image
-              alt="nextui logo"
-              height={40}
-              radius="sm"
-              src={serverData.icon}
-              width={40}
-            />
-            <div className="flex flex-col">
-              <p className="text-md">{props.title}</p>
-              <p className="text-small text-default-500">{props.connectionUrl}</p>
-            </div>
-          </CardHeader>
-          <Divider />
-          <CardBody>
-            {serverData.motd.html.map((line) => <p key={uuidv4()} dangerouslySetInnerHTML={{ __html: line }}></p>)}
-          </CardBody>
-          <CardBody>
+          <a className="text-white" href={props.pageLink}>
+            <CardHeader className="flex gap-3">
+              <Image
+                alt="nextui logo"
+                height={40}
+                radius="sm"
+                src={serverData.icon}
+                width={40}
+              />
+              <div className="flex flex-col">
+                <p className="font-extrabold text-peach text-md">{props.title}</p>
+                <p className="text-small text-default-500">{props.connectionUrl}</p>
+              </div>
+            </CardHeader>
+            <Divider />
+            <CardBody>
+              {serverData.motd.html.map((line) => <p key={uuidv4()} dangerouslySetInnerHTML={{ __html: line }}></p>)}
+            </CardBody>
+            <CardBody>
 
-            {serverData.players ? (
-              <p><b>Players:</b> {serverData.players.online} / {serverData.players.max}</p>
-            ) : (
-              <p>error</p>
-            )}
+              {serverData.players ? (
+                <p><b>Players:</b> {serverData.players.online} / {serverData.players.max}</p>
+              ) : (
+                <p>error</p>
+              )}
 
-            <p><b>Version:</b> {serverData.version}</p>
-            <p><b>Online:</b> {serverData.online ? <span style={{ color: 'green', fontWeight: 'bold' }}>True</span> : <span style={{ color: 'red' }}>False</span>}</p>
-          </CardBody>
-          <Divider />
-          <CardFooter>
+              <p><b>Version:</b> {serverData.version}</p>
+              <p><b>Online:</b> {serverData.online ? <span style={{ color: 'green', fontWeight: 'bold' }}>True</span> : <span style={{ color: 'red' }}>False</span>}</p>
+            </CardBody>
+            <Divider />
+            <CardFooter>
 
-          </CardFooter>
+            </CardFooter>
+          </a>
         </Card>
       ) : (
         <p></p>

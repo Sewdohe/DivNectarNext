@@ -7,7 +7,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 // import PaddedContainer from "../components/building-blocks/PaddedContainer"
 import H1 from "../components/building-blocks/H1"
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
-import Seo from "../components/SEO";
+import Seo from "../components/Seo";
 import P from "../components/building-blocks/Paragraph"
 
 
