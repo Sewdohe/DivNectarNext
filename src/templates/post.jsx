@@ -59,6 +59,7 @@ export const Head = ({ data }) => (
 export const query = graphql`
   query PostTemplate($id: String!) {
     mdx(id: { eq: $id }) {
+      excerpt
       frontmatter {
         title
         date
