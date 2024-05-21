@@ -49,7 +49,7 @@ const IndexPage = (data: PageProps<Queries.BlogPostsQuery>) => {
                         {post.frontmatter?.title}
                       </a>
                     </h3>
-                    <p className="mt-5 line-clamp-3 text-sm leading-6 text-textPrimary">{post.excerpt}</p>
+                    <p className="mt-5 min-h-[120px] line-clamp-3 text-sm leading-6 text-textPrimary">{post.excerpt}</p>
                   </div>
                   <div className="relative mt-8 flex items-center gap-x-4">
                     <img src={'/sewdohe-avatar.png'} alt="" className="h-10 w-10 rounded-full" />
