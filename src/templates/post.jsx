@@ -5,13 +5,15 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import PaddedContainer from "../components/building-blocks/PaddedContainer"
+import H1 from "../components/building-blocks/H1"
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
-import SEO from "../components/SEO";
+import Seo from "../components/SEO";
+import P from "../components/building-blocks/Paragraph"
 
 
 
 
-const shortcodes = { Link, Layout } // Provide common components here
+const shortcodes = { a: Link, Layout, h1: H1, p: P } // Provide common components here
 
 export default function PageTemplate({ data, children }) {
   let featuredImg = getImage(data.mdx.frontmatter.featuredImage?.childImageSharp?.gatsbyImageData)
@@ -33,7 +35,7 @@ export default function PageTemplate({ data, children }) {
 }
 
 export const Head = ({ data }) => (
-  <SEO title={data.mdx.frontmatter.title} featuredImage={data.mdx.frontmatter.featuredImage.childImageSharp.gatsbyImageData} description={data.mdx.excerpt}>
+  <Seo title={data.mdx.frontmatter.title} featuredImage={data.mdx.frontmatter.featuredImage.childImageSharp.gatsbyImageData} description={data.mdx.excerpt}>
     <script type="application/ld+json">
     {`
       {
@@ -53,7 +55,7 @@ export const Head = ({ data }) => (
     }
     `}
     </script>
-  </SEO>
+  </Seo>
 )
 
 export const query = graphql`

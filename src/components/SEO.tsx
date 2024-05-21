@@ -33,7 +33,7 @@ export type SeoProps = {
    */
   featuredImage?: ImageDataType;
 
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export default function Seo(props: SeoProps) {

@@ -31,5 +31,5 @@ const IndexPage: React.FC<PageProps> = () => {
 export default IndexPage
 
 export const Head = () => (
-  <SEO title="DivNectar Home" />
+  <SEO title="DivNectar Home" description="Sewdohe's humble digital abode" />
 )

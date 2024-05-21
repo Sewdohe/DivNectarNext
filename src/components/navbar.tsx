@@ -42,8 +42,8 @@ export default function App() {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {menuItems.map(item => (
           <NavbarItem key={uuidv4()}>
-            <Link color="foreground" to={item.route} activeStyle={{
-              color: "#de0ee9",
+            <Link className="text-sky" color="foreground" to={item.route} activeStyle={{
+              color: "#cba6f7",
               textDecoration: 'underline',
               fontWeight: 700
             }}>
