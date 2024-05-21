@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Button } from "@nextui-org/react";
-// import {AcmeLogo} from "./AcmeLogo.jsx";
 //@ts-ignore
 import logo from "../images/logo.png" // Tell webpack this JS file uses this image
 import { Link } from "gatsby"
@@ -8,12 +7,13 @@ import { v4 as uuidv4 } from 'uuid';
 import LoginButton from './LoginButton'
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./LogoutButton";
-
+import Profile from "./Profile"
 
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { user } = useAuth0();
+  console.log(user)
 
   const menuItems = [
     {
@@ -31,12 +31,13 @@ export default function App() {
   ];
 
   return (
-    <Navbar isBordered onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarBrand>
           <img className="logo-img" src={logo} alt="Logo" />
-          <p className="font-bold text-inherit">&lt;DivNectar/&gt;</p>
+          <p className="font-bold invisible md:visible text-inherit">&lt;DivNectar/&gt;</p>
         </NavbarBrand>
+        <Profile classes="sm:hidden" />
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
@@ -55,13 +56,9 @@ export default function App() {
             </Link>
           </NavbarItem>
         ))}
-        {user ? (
-          <p>{user.name}, <LogoutButton /></p>
-        ) : (
-          <LoginButton />
-        )}
+        <Profile classes="md:visible" />
       </NavbarContent>
-      {/* <NavbarContent justify="end">
+      {/* <NavbarContent className="" justify="end">
       </NavbarContent> */}
       <NavbarMenu className="dark">
         {menuItems.map((item, index) => (
