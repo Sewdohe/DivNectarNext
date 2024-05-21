@@ -16,7 +16,12 @@ module.exports = {
         pink: "#f5c2e7",
         green: "#a6e3a1",
         yellow: "#f9e2af",
-        
+        sapphire: "#74c7ec",
+        blue: "#89b4fa",
+        surface2: "#585b70",
+        surface1: "#45475a",
+        surface: "#313244",
+        base: "#1e1e2e"
       }
     },
   },

@@ -4,7 +4,7 @@ import { MDXProvider } from "@mdx-js/react"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import PaddedContainer from "../components/building-blocks/PaddedContainer"
+// import PaddedContainer from "../components/building-blocks/PaddedContainer"
 import H1 from "../components/building-blocks/H1"
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
 import Seo from "../components/SEO";
@@ -25,11 +25,9 @@ export default function PageTemplate({ data, children }) {
         <span className="text-3xl text-white mt-2 text-center mx-w-md inline-block font-extrabold self-center">{data.mdx.frontmatter.title}</span>
         <GatsbyImage alt="featuredImage" className="mx-auto md:mx-0 flex-grow-0 inline-block" image={featuredImg} />
       </div>
-      <PaddedContainer>
-        <MDXProvider components={shortcodes}>
-          {children}
-        </MDXProvider>
-      </PaddedContainer>
+      <MDXProvider components={shortcodes}>
+        {children}
+      </MDXProvider>
     </Layout>
   )
 }

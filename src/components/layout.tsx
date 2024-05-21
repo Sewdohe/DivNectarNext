@@ -12,7 +12,7 @@ export default function Layout({ children }: React.PropsWithChildren) {
   //   plugins: [new SwupSlideTheme()]
   // });
   return (
-    <main style={{ minHeight: '100vh', backgroundImage: "url('/background.webp')"}} id="swup" className="dark text-foreground bg-background">
+    <main style={{ minHeight: '100vh', backgroundImage: "url('/background.webp')"}} className="dark text-foreground bg-yellow">
       <Providers>
         <NavBar />
           <div>
