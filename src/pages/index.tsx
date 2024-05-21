@@ -8,6 +8,7 @@ import PaddedContainer from "../components/building-blocks/PaddedContainer";
 import P from "../components/building-blocks/Paragraph";
 import CTA from "../components/building-blocks/CTA";
 import SEO from "../components/SEO";
+import ScreenShotHero from "../components/building-blocks/ScreenshotHero";
 
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -21,9 +22,8 @@ const IndexPage: React.FC<PageProps> = () => {
         <P>This is my simple abode. I plan to flesh the site out and make it more interactive in the near future. As for now, you
           can basically just check the status of both my Minecraft servers <Link to="/servers">here.</Link>
         </P>
-        <img className="w-full dark:hidden" src={'/discord.png'} alt="discord logo" />
-        <CTA></CTA>
       </PaddedContainer>
+      <ScreenShotHero />
     </Layout>
   )
 }
