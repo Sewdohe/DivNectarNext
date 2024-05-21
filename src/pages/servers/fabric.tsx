@@ -15,7 +15,7 @@ const IndexPage: React.FC<PageProps> = () => {
     return (
         <Layout>
             {/* <button onClick={() => setMenuState(!menuState)} className="fixed bg-surface px-4 py-2 rounded-md shadow-lg border-sky border-1 hover:scale-110 transition-all right-6 top-20">Menu</button> */}
-            <Button onPress={() => setMenuState(!menuState)} id="fabric-menu-button" isIconOnly color="danger" aria-label="Like">
+            <Button className="bg-green text-surface1 hover:scale-110" onPress={() => setMenuState(!menuState)} id="fabric-menu-button" isIconOnly color="danger" aria-label="Like">
                 <FontAwesomeIcon icon={faBars} />
             </Button>    
             <div className="flex flex-row">
