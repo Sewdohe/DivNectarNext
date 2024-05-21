@@ -9,7 +9,7 @@ import {
   const navigation = [
     { name: 'FAQ', href: '#', icon: QuestionMarkCircleIcon, current: false },
     { name: 'LevelZ', href: '#', icon: UserCircleIcon, current: false },
-    { name: 'Mods', href: '#', icon: Cog6ToothIcon, current: false },
+    { name: 'Mods', href: '#', icon: Cog6ToothIcon, count: "25+", current: false },
     { name: 'Players', href: '#', icon: UserGroupIcon, current: false },
   ]
   

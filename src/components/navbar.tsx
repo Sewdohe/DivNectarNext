@@ -5,11 +5,15 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, Navba
 import logo from "../images/logo.png" // Tell webpack this JS file uses this image
 import { Link } from "gatsby"
 import { v4 as uuidv4 } from 'uuid';
+import LoginButton from './LoginButton'
+import { useAuth0 } from "@auth0/auth0-react";
+import LogoutButton from "./LogoutButton";
 
 
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { user } = useAuth0();
 
   const menuItems = [
     {
@@ -51,6 +55,11 @@ export default function App() {
             </Link>
           </NavbarItem>
         ))}
+        {user ? (
+          <p>{user.name}, <LogoutButton /></p>
+        ) : (
+          <LoginButton />
+        )}
       </NavbarContent>
       {/* <NavbarContent justify="end">
       </NavbarContent> */}

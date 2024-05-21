@@ -15,6 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.4",
     "@deckdeckgo/highlight-code": "^4.4.0",
     "@headlessui/react": "^2.0.3",
     "@heroicons/react": "^2.1.3",
