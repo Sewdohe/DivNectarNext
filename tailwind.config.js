@@ -24,6 +24,7 @@ module.exports = {
         surface: "#313244",
         textPrimary: "#cdd6f4",
         subText: "#bac2de",
+        navBG: "#06080a",
         base: "#1e1e2e"
       }
     },

@@ -19,9 +19,9 @@ import {
   
   export default function Sidebar() {
     return (
-      <div className="flex mt-2 grow flex-col gap-y-8 overflow-y-auto px-6">
+      <div className="flex transition-all bg-navBG bg-opacity-85 h-[100vh] backdrop-blur-sm absolute top-0 left-0 grow flex-col gap-y-8 overflow-y-auto px-6">
         <nav className="flex flex-1 flex-col">
-          <ul role="list" className="flex flex-1 flex-col gap-y-7">
+          <ul role="list" className="flex flex-1 mt-24 flex-col gap-y-7">
             <li>
               <ul role="list" className="-mx-2 list-image-none space-y-1">
                 {navigation.map((item) => (

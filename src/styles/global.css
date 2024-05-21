@@ -47,3 +47,23 @@ li {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #a8bbbf;
 }
+
+.menu {
+    position: absolute;
+    transition: all 1s;
+    top: 0;
+}
+
+.menu-open {
+    left: 0;
+}
+
+.menu-closed {
+    left: -250px;
+}
+
+#fabric-menu-button {
+    position: fixed;
+    right: 10px;
+    top: 85px;
+}
