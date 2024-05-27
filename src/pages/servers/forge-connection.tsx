@@ -36,16 +36,16 @@ const IndexPage: React.FC<PageProps> = () => {
                 width={40}
               />
               <div className="flex flex-col">
-                <P className="text-md">CraftNectar MMO (forge)</P>
-                <P className="text-small text-default-500">How to connect</P>
+                <p className="text-md">CraftNectar MMO (forge)</p>
+                <p className="text-small text-default-500">How to connect</p>
               </div>
             </CardHeader>
             <Divider />
             <CardBody>
-              <P>Use the link at the bottom of the card to download the modpack zip file</P>
-              <P>Open Prism launcher and click the add instance button in the upper left.</P>
-              <P>import the zip file you just downloaded, and press the okay button.</P>
-              <P>Congrats! From now on every time you launch the modpack, it will update itself thanks to a custom update script that runs prior to starting.</P>
+              <p className="m-4">Use the link at the bottom of the card to download the modpack zip file</p>
+              <p className="m-4">Open Prism launcher and click the add instance button in the upper left.</p>
+              <p className="m-4">import the zip file you just downloaded, and press the okay button.</p>
+              <p className="m-4">Congrats! From now on every time you launch the modpack, it will update itself thanks to a custom update script that runs prior to starting.</p>
             </CardBody>
             <Divider />
             <CardFooter>
