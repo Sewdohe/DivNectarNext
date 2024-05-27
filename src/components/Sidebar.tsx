@@ -4,13 +4,12 @@ import {
     QuestionMarkCircleIcon,
     UserGroupIcon
   } from '@heroicons/react/24/outline'
+import { Link } from 'gatsby'
   import React from 'react'
   
   const navigation = [
-    { name: 'FAQ', href: '#', icon: QuestionMarkCircleIcon, current: false },
-    { name: 'LevelZ', href: '#', icon: UserCircleIcon, current: false },
+    { name: 'Connection', href: '/servers/forge-connection', icon: QuestionMarkCircleIcon, current: false },
     { name: 'Mods', href: '#', icon: Cog6ToothIcon, count: "25+", current: false },
-    { name: 'Players', href: '#', icon: UserGroupIcon, current: false },
   ]
   
   function classNames(...classes: string[]) {
@@ -26,8 +25,8 @@ import {
               <ul role="list" className="-mx-2 list-image-none space-y-1">
                 {navigation.map((item) => (
                   <li key={item.name}>
-                    <a
-                      href={item.href}
+                    <Link
+                      to={item.href}
                       className={classNames(
                         item.current ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800',
                         'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
@@ -43,12 +42,11 @@ import {
                           {item.count}
                         </span>
                       ) : null}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </li>
-           
             {/* <li className="-mx-6 mt-auto">
               <a
                 href="#"
