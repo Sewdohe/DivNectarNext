@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image, Spinner } from "@nextui-org/react";
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
@@ -102,10 +102,13 @@ export default function ServerStatus(props: ServerProps) {
     };
 
     fetchPlayerData();
+    const intervalId = setInterval(fetchPlayerData, 60000);
+    return () => clearInterval(intervalId);
+    // fetchPlayerData();
   }, [])
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <Spinner color="secondary">Secondary</Spinner>;
+  if (error) return <Spinner color="secondary">Secondary</Spinner>;
 
   return (
     <div className="flex">
