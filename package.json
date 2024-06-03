@@ -29,6 +29,7 @@
     "@types/react-helmet": "^6.1.11",
     "@types/uuid": "^9.0.8",
     "autoprefixer": "^10.4.17",
+    "axios": "^1.7.2",
     "framer-motion": "^11.0.8",
     "gatsby": "^5.13.3",
     "gatsby-plugin-canonical-urls": "^5.13.1",
