@@ -18,8 +18,8 @@ function classNames(...classes: string[]) {
 
 export default function Sidebar() {
   return (
-    <div className="flex transition-all z-50 bg-navBG bg-opacity-85 sticky h-[100vh] backdrop-blur-sm top-0 left-0 grow flex-col gap-y-8 overflow-y-auto px-6">
-      <nav className="flex flex-1 flex-col">
+    <div className="transition-all z-50  inline-block min-h-[100vh] bg-navBG bg-opacity-85 backdrop-blur-sm grow flex-col gap-y-8 overflow-y-auto px-6">
+      <nav className="flex sticky flex-1 flex-col">
         <ul role="list" className="flex flex-1 mt-24 flex-col gap-y-7">
           <li>
             <ul role="list" className="-mx-2 list-image-none space-y-1">

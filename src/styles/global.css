@@ -49,17 +49,21 @@ li {
 }
 
 .menu {
-    position: absolute;
     transition: all 1s;
     top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
 }
 
 .menu-open {
     left: 0;
+    top: 0;
 }
 
 .menu-closed {
     left: -250px;
+    top: 0;
 }
 
 #fabric-menu-button {

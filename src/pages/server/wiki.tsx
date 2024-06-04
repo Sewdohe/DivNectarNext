@@ -9,23 +9,14 @@ import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { Button } from "@nextui-org/react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ServerStatus from "../../components/ServerStatus";
+import WikiLayout from "../../components/WikiLayout";
 
 const IndexPage: React.FC<PageProps> = () => {
   const [menuState, setMenuState] = React.useState(false)
 
   return (
-    <Layout>
-      {/* <button onClick={() => setMenuState(!menuState)} className="fixed bg-surface px-4 py-2 rounded-md shadow-lg border-sky border-1 hover:scale-110 transition-all right-6 top-20">Menu</button> */}
-      <Button className="bg-green z-30 text-surface1 hover:scale-110" onPress={() => setMenuState(!menuState)} id="fabric-menu-button" isIconOnly color="danger" aria-label="Like">
-        <FontAwesomeIcon icon={faBars} />
-      </Button>
-      <div className={`menu ${menuState ? "menu-open" : "menu-closed"}`} id="sidebar">
-        <Sidebar />
-      </div>
-
-
-      <div id="main-container" className="flex flex-col justify-center md:flex-row">
-        <div className="max-w-4xl" id="page-content">
+    <WikiLayout>
+        <div className="" id="page-content">
           <H1>CraftNectarMMO</H1>
           <P>
             A new modpack is currently in development for the server. All current content will be deleted upon launch of the new server; save any builds you want ASAP.
@@ -40,8 +31,7 @@ const IndexPage: React.FC<PageProps> = () => {
         <div>
           <ServerStatus pageLink="/server/wiki" title="CraftNectar MMO" connectionUrl="craftnectar.divnectar.com" uri="craft.divnectar.com" />
         </div>
-      </div>
-    </Layout>
+    </WikiLayout>
   )
 }
 

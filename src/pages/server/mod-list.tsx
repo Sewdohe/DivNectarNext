@@ -8,20 +8,13 @@ import { Button, Tooltip } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Sidebar from "../../components/Sidebar";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import WikiLayout from "../../components/WikiLayout";
 
 const IndexPage: React.FC<PageProps> = () => {
   const [menuState, setMenuState] = React.useState(false)
 
   return (
-    <Layout>
-      <Tooltip placement="left" className="bg-surface text-textPrimary" content="Open Sidebar">
-        <Button className="bg-green text-surface1 hover:scale-110" onPress={() => setMenuState(!menuState)} id="fabric-menu-button" isIconOnly color="danger" aria-label="Like">
-          <FontAwesomeIcon icon={faBars} />
-        </Button>
-      </Tooltip>
-      <div className={`menu ${menuState ? "menu-open" : "menu-closed"}`} id="sidebar">
-        <Sidebar />
-      </div>
+    <WikiLayout>
       <H1>CraftNectar Modlist</H1>
       <ul className="list-disc px-8 py-2 md:px-24 md:max-w-[50%]">
         <li>Alex's Mobs</li>
@@ -94,7 +87,7 @@ const IndexPage: React.FC<PageProps> = () => {
         <li>YUNG's Better Strongholds (Forge)</li>
         <li>YUNG's Bridges (Forge)</li>
       </ul>
-    </Layout>
+    </WikiLayout>
   )
 }
 

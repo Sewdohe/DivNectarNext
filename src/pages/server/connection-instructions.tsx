@@ -11,21 +11,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
 import PaddedContainer from "../../components/building-blocks/PaddedContainer";
 import { ArrowPathIcon, CloudArrowUpIcon, Cog6ToothIcon, FingerPrintIcon, LockClosedIcon, ServerIcon } from "@heroicons/react/24/outline";
+import WikiLayout from "../../components/WikiLayout";
 
 
 const IndexPage: React.FC<PageProps> = () => {
   const [menuState, setMenuState] = React.useState(false)
 
   return (
-    <Layout>
-      <Tooltip placement="left" className="bg-surface text-textPrimary" content="Open Sidebar">
+    <WikiLayout>
+      {/* <Tooltip placement="left" className="bg-surface text-textPrimary" content="Open Sidebar">
         <Button className="bg-green text-surface1 hover:scale-110" onPress={() => setMenuState(!menuState)} id="fabric-menu-button" isIconOnly color="danger" aria-label="Like">
           <FontAwesomeIcon icon={faBars} />
         </Button>
       </Tooltip>
       <div className={`menu ${menuState ? "menu-open" : "menu-closed"}`} id="sidebar">
         <Sidebar />
-      </div>
+      </div> */}
       <div className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm:text-center">
@@ -52,7 +53,7 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </WikiLayout>
   )
 }
 
