@@ -21,8 +21,8 @@ export default function App() {
       route: "/"
     },
     {
-      name: "Minecraft Servers",
-      route: "/servers"
+      name: "Forge Server",
+      route: "/server/wiki"
     },
     {
       name: "Blog",

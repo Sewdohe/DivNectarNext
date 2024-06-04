@@ -8,6 +8,7 @@ import Sidebar from "../../components/Sidebar"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { Button } from "@nextui-org/react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ServerStatus from "../../components/ServerStatus";
 
 const IndexPage: React.FC<PageProps> = () => {
   const [menuState, setMenuState] = React.useState(false)
@@ -15,14 +16,16 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout>
       {/* <button onClick={() => setMenuState(!menuState)} className="fixed bg-surface px-4 py-2 rounded-md shadow-lg border-sky border-1 hover:scale-110 transition-all right-6 top-20">Menu</button> */}
-      <Button className="bg-green text-surface1 hover:scale-110" onPress={() => setMenuState(!menuState)} id="fabric-menu-button" isIconOnly color="danger" aria-label="Like">
+      <Button className="bg-green z-30 text-surface1 hover:scale-110" onPress={() => setMenuState(!menuState)} id="fabric-menu-button" isIconOnly color="danger" aria-label="Like">
         <FontAwesomeIcon icon={faBars} />
       </Button>
-      <div className="flex flex-row">
-        <div className={`menu ${menuState ? "menu-open" : "menu-closed"}`} id="sidebar">
-          <Sidebar />
-        </div>
-        <div className="" id="page-content">
+      <div className={`menu ${menuState ? "menu-open" : "menu-closed"}`} id="sidebar">
+        <Sidebar />
+      </div>
+
+
+      <div id="main-container" className="flex flex-col justify-center md:flex-row">
+        <div className="max-w-4xl" id="page-content">
           <H1>CraftNectarMMO</H1>
           <P>
             A new modpack is currently in development for the server. All current content will be deleted upon launch of the new server; save any builds you want ASAP.
@@ -34,13 +37,16 @@ const IndexPage: React.FC<PageProps> = () => {
             <li>Provide the player with a clean and balanced MMO system featuring multiple content mods.</li>
           </ul>
         </div>
+        <div>
+          <ServerStatus pageLink="/server/wiki" title="CraftNectar MMO" connectionUrl="craftnectar.divnectar.com" uri="craft.divnectar.com" />
+        </div>
       </div>
     </Layout>
   )
 }
 
 export const Head = () => (
-  <SEO title="CraftNectar Fabric" description="Learn more about the CraftNectar Fabric 1.20.1 server." />
+  <SEO title="CraftNectar Forge MMO" description="Learn more about the CraftNectar Forge 1.19.2 server." />
 )
 
 export default IndexPage

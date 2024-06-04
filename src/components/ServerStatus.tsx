@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image, Spinner } from "@nextui-org/react";
+import { Link } from "gatsby";
+import { Card, CardHeader, CardBody, CardFooter, Divider, Image, Spinner, Button } from "@nextui-org/react";
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookAtlas } from "@fortawesome/free-solid-svg-icons"
 
 
 interface ServerProps {
@@ -111,10 +114,10 @@ export default function ServerStatus(props: ServerProps) {
   if (error) return <Spinner color="secondary">Secondary</Spinner>;
 
   return (
-    <div className="flex">
+    <div className="flex z-0">
       {serverData ? (
         <Card className="sm:w-full p-4 max-w-sm m-6">
-          <a className="text-white" href={props.pageLink}>
+          {/* <a className="text-white" href={props.pageLink}> */}
             <CardHeader className="flex gap-3">
               <Image
                 alt="nextui logo"
@@ -126,6 +129,14 @@ export default function ServerStatus(props: ServerProps) {
               <div className="flex flex-col">
                 <p className="font-extrabold text-peach text-md">{props.title}</p>
                 <p className="text-small text-default-500">{props.connectionUrl}</p>
+              </div>
+              <div className="flex flex-row justify-end">
+              <Link to="/server/wiki" className="text-white hover:scale-110" color="danger" aria-label="Like">
+                <div className="flex flex-col gap-1 md:flex-row">
+                  <FontAwesomeIcon icon={faBookAtlas} />
+                  <span className="text-xs px-1">View Wiki</span>
+                </div>
+              </Link>
               </div>
             </CardHeader>
             <Divider />
@@ -154,7 +165,7 @@ export default function ServerStatus(props: ServerProps) {
                 ))}
               </ul>
             </CardFooter>
-          </a>
+          {/* </a> */}
         </Card>
       ) : (
         <p></p>
