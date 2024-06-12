@@ -4,7 +4,7 @@ import type { PageProps } from "gatsby"
 import SEO from "../../components/Seo";
 import H1 from "../../components/building-blocks/H1"
 import P from "../../components/building-blocks/Paragraph"
-import { Button, Tooltip } from "@nextui-org/react";
+import { Button, Spinner, Tooltip } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Sidebar from "../../components/Sidebar";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -12,21 +12,25 @@ import WikiLayout from "../../components/WikiLayout";
 import axios from "axios";
 
 interface PlayerData {
-  playername: string;
-  uuid: string;
-  totalLevels: number;
-  avatarUrl: string;
+  data: [
+    {
+      playerName: string;
+      uuid: string;
+      totalLevels: number;
+      avatarUrl: string;
+    }
+  ]
 }
 
 const IndexPage: React.FC<PageProps> = () => {
   const [menuState, setMenuState] = React.useState(false)
-  const [players, setPlayers] = React.useState<PlayerData[] | null>(null);
+  const [players, setPlayers] = React.useState<PlayerData | null>(null);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     const fetchPlayerData = async () => {
       try {
-        const serverResponse: PlayerData[] = await axios.get("http://api.divnectar.com/players")
+        const serverResponse: PlayerData = await axios.get("https://api.divnectar.com/players")
         // const serverResponse: PlayerData[] = await axios.get("/api/players")
         setPlayers(serverResponse)
         console.log(serverResponse)
@@ -44,11 +48,56 @@ const IndexPage: React.FC<PageProps> = () => {
     return () => clearInterval(intervalId);
   }, [])
 
-  return (
+  if (players) return (
     <WikiLayout>
-      
+      <ul role="list" className="grid m-6 grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {players!.data.map((player) => (
+          <li key={player.uuid} className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-navBG text-center shadow">
+            <div className="flex flex-1 flex-col p-8">
+            <img className="mx-auto h-32 w-32 flex-shrink-0 shadow-lg" src={player.avatarUrl} alt="" />
+            <h3 className="mt-6 text-sm font-lg font-extrabold text-textPrimary">{player.playerName}</h3>
+            <dl className="mt-1 flex flex-grow flex-col justify-between">
+              <dd className="text-sm text-subText">{player.totalLevels} Levels Total</dd>
+              <dt className="sr-only">Role</dt>
+              <dd className="mt-3">
+                <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                  Player
+                </span>
+              </dd>
+            </dl>
+          </div>
+          {/* <div>
+            <div className="-mt-px flex divide-x divide-gray-200">
+              <div className="flex w-0 flex-1">
+                <a
+                  href={`mailto:${person.email}`}
+                  className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
+                >
+                  <EnvelopeIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  Email
+                </a>
+              </div>
+              <div className="-ml-px flex w-0 flex-1">
+                <a
+                  href={`tel:${person.telephone}`}
+                  className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
+                >
+                  <PhoneIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  Call
+                </a>
+              </div>
+            </div>
+          </div> */}
+          </li>
+        ))}
+      </ul>
     </WikiLayout>
   )
+
+  return (
+    <Spinner>Loading</Spinner>
+  )
+
 }
 
 export const Head = () => (
