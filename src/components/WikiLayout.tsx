@@ -18,6 +18,7 @@ import { Link } from 'gatsby';
 const navigation = [
     { name: 'How to Connect', href: '/server/connection-instructions', icon: HomeIcon, current: true },
     { name: 'Mod List', href: '/server/mod-list', icon: UsersIcon, current: false },
+    { name: 'Player Glossary', href: '/server/players', icon: UsersIcon, current: false },
   ]
 
   function classNames(...classes: any[]) {
