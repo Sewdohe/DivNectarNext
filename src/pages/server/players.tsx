@@ -18,20 +18,13 @@ interface PlayerData {
       uuid: string;
       totalLevels: number;
       avatarUrl: string;
-      mining: number;
-      crafting: number;
-      woodcutting: number;
-      excavation: number;
-      agility: number;
-      combat: number;
-      mechanics: number;
-      smiting: number;
-      endurance: number;
-      engineering: number;
-      building: number;
-      cooking: number;
       health: number;
       maxHealth: number;
+      skills: {
+        skills: {
+          name: string;
+        }
+      }
     }
   ]
 }
@@ -65,7 +58,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
   if (players) return (
     <WikiLayout>
-      <ul role="list" className="grid m-6 grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <ul role="list" className="grid m-6 pb-10 grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {players!.data.map((player, index) => (
           <li key={player.uuid} className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-navBG text-center shadow">
             <div className="flex flex-1 flex-col p-8">
@@ -91,36 +84,14 @@ const IndexPage: React.FC<PageProps> = () => {
               </dl>
             </div>
             <ul className="m-4 p-2">
-              <li className="flex justify-center items-center">
-                <span className="text-textPrimary text-xs">Mining </span>
-                <span className="w-full"></span>
-                <span className="text-xs">{player.mining}</span>
-              </li>
-              <li className="flex justify-center items-center">
-                <span className="text-textPrimary text-xs">Crafting </span>
-                <span className="w-full"></span>
-                <span className="text-xs">{player.crafting}</span>
-              </li>
-              <li className="flex justify-center items-center">
-                <span className="text-textPrimary text-xs">Woodcutting </span>
-                <span className="w-full"></span>
-                <span className="text-xs">{player.woodcutting}</span>
-              </li>
-              <li className="flex justify-center items-center">
-                <span className="text-textPrimary text-xs">Excavation </span>
-                <span className="w-full"></span>
-                <span className="text-xs">{player.excavation}</span>
-              </li>
-              <li className="flex justify-center items-center">
-                <span className="text-textPrimary text-xs">Agility </span>
-                <span className="w-full"></span>
-                <span className="text-xs">{player.agility}</span>
-              </li>
-              <li className="flex justify-center items-center">
-                <span className="text-textPrimary text-xs">Combat </span>
-                <span className="w-full"></span>
-                <span className="text-xs">{player.combat}</span>
-              </li>
+              {Object.keys(player.skills.skills).map((keyName, keyIndex) => (
+                <li className="flex justify-center items-center">
+                  <span className="text-textPrimary text-xs">{keyName} </span>
+                  <span className="w-full"></span>
+                  {/* @ts-ignore */}
+                  <span className="text-xs">{player.skills.skills[keyName]}</span>
+                </li>
+              ))}
             </ul>
             {/* <div>
             <div className="-mt-px flex divide-x divide-gray-200">
@@ -157,7 +128,7 @@ const IndexPage: React.FC<PageProps> = () => {
 }
 
 export const Head = () => (
-  <SEO title="CraftNectar Modlist" description="All the mods available for CraftNectar" />
+  <SEO title="CraftNectar Player Glossary" description="View stats of online players in real-time" />
 )
 
 export default IndexPage
