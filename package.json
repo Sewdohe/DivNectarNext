@@ -52,6 +52,7 @@
     "react-helmet": "^6.1.0",
     "swup": "^4.6.1",
     "tailwindcss": "^3.4.1",
+    "toml": "^3.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

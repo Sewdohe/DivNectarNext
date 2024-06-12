@@ -9,9 +9,53 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Sidebar from "../../components/Sidebar";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import WikiLayout from "../../components/WikiLayout";
+import axios from "axios";
+import toml from 'toml';
+
+interface TomlIndex {
+  files: [{
+    file: string;
+    hash: string;
+  }]
+}
 
 const IndexPage: React.FC<PageProps> = () => {
   const [menuState, setMenuState] = React.useState(false)
+  const [players, setPlayers] = React.useState<any | null>(null);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchModList = async () => {
+      try {
+        const fileListResponse: any = await fetch("https://api.github.com/repos/sewdohe/CraftNectarForge/contents/mods/?ref=branch", {
+          headers: {
+            Accept: 'application/vnd.github.v3+json',
+          },
+        });
+
+        const fileListJSON = await fileListResponse.json();
+        console.log(fileListJSON)
+        
+
+        // Fetch avatars for each player
+        // const playersWithAvatars = await Promise.all(
+        //   playerList.map(async (player) => {
+        //     const avatarResponse = await axios.get(`https://crafatar.com/avatars/${player.uuid}?size=100&overlay`);
+        //     return {
+        //       ...player,
+        //       avatar: avatarResponse.config.url, // Get the URL from the request configuration
+        //     };
+        //   })
+        // );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+    fetchModList();
+  }, [])
 
   return (
     <WikiLayout>

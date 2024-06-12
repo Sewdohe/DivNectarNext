@@ -4,7 +4,7 @@ import type { PageProps } from "gatsby"
 import SEO from "../../components/Seo";
 import H1 from "../../components/building-blocks/H1"
 import P from "../../components/building-blocks/Paragraph"
-import { Button, Spinner, Tooltip } from "@nextui-org/react";
+import { Button, Spinner, Tooltip, Progress } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Sidebar from "../../components/Sidebar";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +18,20 @@ interface PlayerData {
       uuid: string;
       totalLevels: number;
       avatarUrl: string;
+      mining: number;
+      crafting: number;
+      woodcutting: number;
+      excavation: number;
+      agility: number;
+      combat: number;
+      mechanics: number;
+      smiting: number;
+      endurance: number;
+      engineering: number;
+      building: number;
+      cooking: number;
+      health: number;
+      maxHealth: number;
     }
   ]
 }
@@ -35,6 +49,7 @@ const IndexPage: React.FC<PageProps> = () => {
         setPlayers(serverResponse)
         console.log(serverResponse)
         const playerList = serverResponse;
+        playerList.data.sort((a, b) => b.totalLevels - a.totalLevels)
         setPlayers(playerList);
       } catch (err) {
         console.log(err);
@@ -51,22 +66,63 @@ const IndexPage: React.FC<PageProps> = () => {
   if (players) return (
     <WikiLayout>
       <ul role="list" className="grid m-6 grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {players!.data.map((player) => (
+        {players!.data.map((player, index) => (
           <li key={player.uuid} className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-navBG text-center shadow">
             <div className="flex flex-1 flex-col p-8">
-            <img className="mx-auto h-32 w-32 flex-shrink-0 shadow-lg" src={player.avatarUrl} alt="" />
-            <h3 className="mt-6 text-sm font-lg font-extrabold text-textPrimary">{player.playerName}</h3>
-            <dl className="mt-1 flex flex-grow flex-col justify-between">
-              <dd className="text-sm text-subText">{player.totalLevels} Levels Total</dd>
-              <dt className="sr-only">Role</dt>
-              <dd className="mt-3">
-                <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                  Player
-                </span>
-              </dd>
-            </dl>
-          </div>
-          {/* <div>
+              <img className="mx-auto h-32 w-32 flex-shrink-0 shadow-lg" src={player.avatarUrl} alt="" />
+              <Progress
+                label="Health"
+                size="sm"
+                value={player.health}
+                maxValue={player.maxHealth}
+                color="secondary"
+                showValueLabel={true}
+                className="max-w-md"
+              />
+              <h3 className="mt-6 text-sm font-lg font-extrabold text-textPrimary">{player.playerName}</h3>
+              <dl className="mt-1 flex flex-grow flex-col justify-between">
+                <dd className="text-sm text-subText">{player.totalLevels} Levels Total</dd>
+                <dt className="sr-only">Rank</dt>
+                <dd className="mt-3">
+                  <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                    #{index + 1}
+                  </span>
+                </dd>
+              </dl>
+            </div>
+            <ul className="m-4 p-2">
+              <li className="flex justify-center items-center">
+                <span className="text-textPrimary text-xs">Mining </span>
+                <span className="w-full"></span>
+                <span className="text-xs">{player.mining}</span>
+              </li>
+              <li className="flex justify-center items-center">
+                <span className="text-textPrimary text-xs">Crafting </span>
+                <span className="w-full"></span>
+                <span className="text-xs">{player.crafting}</span>
+              </li>
+              <li className="flex justify-center items-center">
+                <span className="text-textPrimary text-xs">Woodcutting </span>
+                <span className="w-full"></span>
+                <span className="text-xs">{player.woodcutting}</span>
+              </li>
+              <li className="flex justify-center items-center">
+                <span className="text-textPrimary text-xs">Excavation </span>
+                <span className="w-full"></span>
+                <span className="text-xs">{player.excavation}</span>
+              </li>
+              <li className="flex justify-center items-center">
+                <span className="text-textPrimary text-xs">Agility </span>
+                <span className="w-full"></span>
+                <span className="text-xs">{player.agility}</span>
+              </li>
+              <li className="flex justify-center items-center">
+                <span className="text-textPrimary text-xs">Combat </span>
+                <span className="w-full"></span>
+                <span className="text-xs">{player.combat}</span>
+              </li>
+            </ul>
+            {/* <div>
             <div className="-mt-px flex divide-x divide-gray-200">
               <div className="flex w-0 flex-1">
                 <a
