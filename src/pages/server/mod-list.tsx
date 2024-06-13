@@ -26,7 +26,7 @@ interface ModListItem {
 
 const IndexPage: React.FC<PageProps> = () => {
   const [menuState, setMenuState] = React.useState(false)
-  const [modList, setModList] = React.useState<ModListItem[] | null>([]);
+  const [modList, setModList] = React.useState<ModListItem[] | null>(null);
   var tempList: ModListItem[] = [];
   const [loading, setLoading] = React.useState(true);
 
@@ -43,23 +43,22 @@ const IndexPage: React.FC<PageProps> = () => {
         const fileListJSON = await fileListResponse.json();
 
         fileListJSON.forEach(async (file: any) => {
-          console.log(file)
           const fileContentResponse: any = await fetch(file.download_url)
           const tomlContent = await fileContentResponse.text();
           const fileTOML = toml.parse(tomlContent);
-          tempList = [];
 
-          tempList?.push({
+          console.log(`pushing ${fileTOML.name} to the list of mods.`)
+          tempList.push({
             name: fileTOML.name,
             side: fileTOML.side
           })
         });
 
         console.log('setting temp list')
-        setModList(tempList);
     } catch (err) {
       console.log(err);
     } finally {
+      setModList(tempList);
       setLoading(false);
     }
   }
@@ -67,18 +66,19 @@ const IndexPage: React.FC<PageProps> = () => {
     fetchModList();
   }, [])
 
-  if(loading) return <Spinner color="secondary" size="lg" />
 
-  return (
-    <WikiLayout>
-      <H1>CraftNectar Modlist</H1>
-      <ul className="list-disc px-8 py-2 md:px-24 md:max-w-[50%]">
-        {modList?.map((mod, index) => (
-          <li key={index} className="">{mod.name} - {mod.side}</li>
-        ))}
-      </ul>
-    </WikiLayout>
-  )
+    if (!loading) {
+      return (
+        <WikiLayout>
+          <H1>CraftNectar Modlist</H1>
+          <ul className="list-disc px-8 py-2 md:px-24 md:max-w-[50%]">
+            {modList!.map((mod, index) => (
+              <li key={index} className="">{mod.name} - {mod.side}</li>
+            ))}
+          </ul>
+        </WikiLayout>
+      )
+    }
 }
 
 export const Head = () => (
