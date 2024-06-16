@@ -22,17 +22,23 @@ interface PlayerData {
       maxHealth: number;
       skills: {
         skills: {
-          name: string;
+          name: number;
         }
       }
     }
   ]
 }
 
+interface SkillObject {
+  name: string,
+  level: number
+}
+
 const IndexPage: React.FC<PageProps> = () => {
   const [menuState, setMenuState] = React.useState(false)
   const [players, setPlayers] = React.useState<PlayerData | null>(null);
   const [loading, setLoading] = React.useState(true);
+  var skillsList: SkillObject[] = [];
 
   React.useEffect(() => {
     const fetchPlayerData = async () => {
@@ -40,7 +46,7 @@ const IndexPage: React.FC<PageProps> = () => {
         const serverResponse: PlayerData = await axios.get("https://api.divnectar.com/players")
         // const serverResponse: PlayerData[] = await axios.get("/api/players")
         setPlayers(serverResponse)
-        console.log(serverResponse)
+        // console.log(serverResponse)
         const playerList = serverResponse;
         playerList.data.sort((a, b) => b.totalLevels - a.totalLevels)
         setPlayers(playerList);
@@ -84,12 +90,20 @@ const IndexPage: React.FC<PageProps> = () => {
               </dl>
             </div>
             <ul className="m-4 p-2">
+              <div className="hidden">
               {Object.keys(player.skills.skills).map((keyName, keyIndex) => (
+                skillsList.push({
+                  name: keyName,
+                  level: player.skills.skills[keyName]
+                })
+              ))}
+              </div>
+              {skillsList.sort((a, b) => b.level - a.level).map((skill) => (
                 <li className="flex justify-center items-center">
-                  <span className="text-textPrimary text-xs">{keyName} </span>
+                  <span className="text-textPrimary text-xs">{skill.name} </span>
                   <span className="w-full"></span>
                   {/* @ts-ignore */}
-                  <span className="text-xs">{player.skills.skills[keyName]}</span>
+                  <span className="text-xs">{skill.level}</span>
                 </li>
               ))}
             </ul>

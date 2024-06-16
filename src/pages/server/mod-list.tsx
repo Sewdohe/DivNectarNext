@@ -40,20 +40,20 @@ const IndexPage: React.FC<PageProps> = () => {
           },
         });
 
-        const fileListJSON = await fileListResponse.json();
+        const fileListJSON: any = await fileListResponse.json();
+        console.log(fileListJSON);
 
-        fileListJSON.forEach(async (file: any) => {
-          const fileContentResponse: any = await fetch(file.download_url)
-          const tomlContent = await fileContentResponse.text();
-          const fileTOML = toml.parse(tomlContent);
+        tempList = await Promise.all(fileListJSON.files.map(async (file: any) => {
+            const fileContentResponse: any = await fetch(file.download_url)
+            const tomlContent = await fileContentResponse.text();
+            const fileTOML = toml.parse(tomlContent);
 
-          console.log(`pushing ${fileTOML.name} to the list of mods.`)
-          tempList.push({
-            name: fileTOML.name,
-            side: fileTOML.side
-          })
-        });
-
+            console.log("adding " + fileTOML.name)
+            return {
+              name: fileTOML.name,
+              side: fileTOML.side
+            }
+        }))
         console.log('setting temp list')
     } catch (err) {
       console.log(err);
