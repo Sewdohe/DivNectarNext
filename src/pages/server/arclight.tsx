@@ -24,7 +24,7 @@ const IndexPage: React.FC<PageProps> = () => {
       try {
         const serverResponse: PapiResponse = await axios({
           method: 'post',
-          url: 'localhost:22223/api/placeholder',
+          url: 'http://localhost:22223/api/placeholder',
           data: '%playerlist_all_list%',
           headers: { 'Authorization': 'testingthis'}
         })
