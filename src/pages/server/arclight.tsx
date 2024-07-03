@@ -24,9 +24,11 @@ const IndexPage: React.FC<PageProps> = () => {
       try {
         const serverResponse: PapiResponse = await axios({
           method: 'post',
-          url: 'http://localhost:22223/api/placeholder',
+          url: 'https://api.divnectar.com/api/placeholder',
           data: '%playerlist_all_list%',
-          headers: { 'Authorization': 'testingthis'}
+          headers: {
+            'Authorization': 'testingthis'
+          }
         })
         console.log(serverResponse)
       } catch (err) {

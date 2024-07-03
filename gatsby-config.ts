@@ -9,8 +9,8 @@ const config: GatsbyConfig = {
     image: '/logo.png'
   },
   proxy: {
-    prefix: "/divnectar",
-    url: "https://api.divnectar.com",
+    prefix: "/api",
+    url: "https://api.divnectar.com/api/",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
