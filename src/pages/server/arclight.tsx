@@ -27,7 +27,8 @@ const IndexPage: React.FC<PageProps> = () => {
           url: 'https://api.divnectar.com/api/placeholder',
           data: '%playerlist_all_list%',
           headers: {
-            'Authorization': 'testingthis'
+            'Authorization': 'testingthis',
+            'Access-Control-Allow-Origin': 'https://divnectar.com'
           }
         })
         console.log(serverResponse)
