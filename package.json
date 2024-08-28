@@ -25,6 +25,7 @@
     "@heroicons/react": "^2.1.3",
     "@mdx-js/react": "^3.0.1",
     "@nextui-org/react": "^2.2.9",
+    "@react-icons/all-files": "^4.1.0",
     "@swup/slide-theme": "^2.0.0",
     "@types/react-helmet": "^6.1.11",
     "@types/uuid": "^9.0.8",

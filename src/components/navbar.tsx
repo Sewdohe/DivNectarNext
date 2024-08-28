@@ -13,7 +13,6 @@ import Profile from "./Profile"
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { user } = useAuth0();
-  console.log(user)
 
   const menuItems = [
     {
@@ -21,7 +20,7 @@ export default function App() {
       route: "/"
     },
     {
-      name: "Forge Server",
+      name: "Minecraft",
       route: "/server/wiki"
     },
     {

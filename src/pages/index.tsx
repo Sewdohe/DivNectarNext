@@ -1,12 +1,7 @@
 import * as React from "react"
-import { Link, type HeadFC, type PageProps } from "gatsby"
-import { Providers } from "../providers";
-// import {NextUIProvider} from "@nextui-org/system";
+import { Link, type PageProps } from "gatsby"
 import Layout from "../components/layout";
-import ServerStatus from "../components/ServerStatus";
-import PaddedContainer from "../components/building-blocks/PaddedContainer";
 import P from "../components/building-blocks/Paragraph";
-import CTA from "../components/building-blocks/CTA";
 import SEO from "../components/Seo";
 import ScreenShotHero from "../components/building-blocks/ScreenshotHero";
 

@@ -1,88 +1,88 @@
-import * as React from "react"
-import Layout from "../../components/layout";
-import type { PageProps } from "gatsby"
+import * as React from "react";
+import type { PageProps } from "gatsby";
 import SEO from "../../components/Seo";
-import H1 from "../../components/building-blocks/H1"
-import P from "../../components/building-blocks/Paragraph"
-import { Button, Spinner, Tooltip } from "@nextui-org/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Sidebar from "../../components/Sidebar";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import H1 from "../../components/building-blocks/H1";
 import WikiLayout from "../../components/WikiLayout";
-import axios from "axios";
-import toml from 'toml';
+import axios, { AxiosResponse } from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
-interface TomlIndex {
-  files: [{
-    file: string;
-    hash: string;
-  }]
-}
-
-interface ModListItem {
+interface PluginInfo {
   name: string;
-  side: string;
+  enabled: boolean;
+  version: string;
+  website?: string;
+  authors: string[];
+  depends: string[];
+  softDepends: string[];
+  apiVersion: string;
+  description?: string;
 }
 
 const IndexPage: React.FC<PageProps> = () => {
-  const [menuState, setMenuState] = React.useState(false)
-  const [modList, setModList] = React.useState<ModListItem[] | null>(null);
-  var tempList: ModListItem[] = [];
-  const [loading, setLoading] = React.useState(true);
-
+  const [menuState, setMenuState] = React.useState(false);
+  const [pluginList, setPluginList] = React.useState<any | null>(null);
 
   React.useEffect(() => {
     const fetchModList = async () => {
-      try {
-        const fileListResponse: any = await fetch("https://api.github.com/repos/sewdohe/CraftNectarForge/contents/mods/?ref=branch", {
-          headers: {
-            Accept: 'application/vnd.github.v3+json',
-          },
-        });
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: "https://api.divnectar.com/v1/plugins",
+        headers: {
+          key: `${process.env.API_ACCESS_KEY}`,
+        },
+      };
 
-        const fileListJSON: any = await fileListResponse.json();
-        console.log(fileListJSON);
-
-        tempList = await Promise.all(fileListJSON.files.map(async (file: any) => {
-            const fileContentResponse: any = await fetch(file.download_url)
-            const tomlContent = await fileContentResponse.text();
-            const fileTOML = toml.parse(tomlContent);
-
-            console.log("adding " + fileTOML.name)
-            return {
-              name: fileTOML.name,
-              side: fileTOML.side
-            }
-        }))
-        console.log('setting temp list')
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setModList(tempList);
-      setLoading(false);
-    }
-  }
+      let res: AxiosResponse<PluginInfo[]> = await axios.request(config);
+      setPluginList(res.data);
+    };
 
     fetchModList();
-  }, [])
+  }, []);
 
-
-    if (!loading) {
-      return (
-        <WikiLayout>
-          <H1>CraftNectar Modlist</H1>
-          <ul className="list-disc px-8 py-2 md:px-24 md:max-w-[50%]">
-            {modList!.map((mod, index) => (
-              <li key={index} className="">{mod.name} - {mod.side}</li>
-            ))}
-          </ul>
-        </WikiLayout>
-      )
-    }
-}
+  if (pluginList) {
+    return (
+      <WikiLayout>
+        <H1>CraftNectar Plugins</H1>
+        <table className="table-auto overflow-scroll p-0 m-0 border-separate rounded-md border-1 border-tools-table-outline w-full">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Version</th>
+              <th>Link</th>
+              <th>Author</th>
+            </tr>
+          </thead>
+          <tbody className="p-2">
+          {pluginList!.map((plugin: PluginInfo) => (
+            <tr key={plugin.name} className="odd:bg-slate-500">
+              <td className="px-2">
+              {plugin.name}
+              </td>
+              <td className="px-2">
+                {plugin.version}
+              </td>
+              <td className="px-2 m-1">
+                <a href={plugin.website}><FontAwesomeIcon icon={faCircleInfo} /></a>
+              </td>
+              <td className="px-2">
+                {plugin.authors[0]}
+              </td>
+            </tr>
+          ))}
+          </tbody>
+        </table>
+      </WikiLayout>
+    );
+  }
+};
 
 export const Head = () => (
-  <SEO title="CraftNectar Modlist" description="All the mods available for CraftNectar" />
-)
+  <SEO
+    title="CraftNectar Modlist"
+    description="All the plugins installed on CraftNectar"
+  />
+);
 
-export default IndexPage
+export default IndexPage;

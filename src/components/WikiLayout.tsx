@@ -29,7 +29,7 @@ export default function WikiLayout({ children }: React.PropsWithChildren) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     return (
-        <main style={{ minHeight: '100vh', backgroundImage: "url('/background.webp')" }} className="dark text-foreground bg-yellow">
+        <main style={{ backgroundImage: "url('/background.webp')" }} className="dark min-h-[100vh] text-foreground bg-yellow">
             <Providers>
                 <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
