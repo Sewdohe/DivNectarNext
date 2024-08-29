@@ -163,14 +163,14 @@ const IndexPage: React.FC<PageProps> = () => {
         </div>
         <div
           role="list"
-          className="grid m-6 pb-10 grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+          className="pb-10 w-full"
         >
           {viewAll ? (
-            <div>
+            <div className="flex flex-wrap flex-row justify-center">
               {allPlayers.map((player: OfflinePlayer) => (
                 <div
                   key={player.uuid}
-                  className="col-span-1 flex flex-col m-4 divide-y divide-gray-200 rounded-lg bg-navBG text-center shadow"
+                  className="flex flex-col m-4 rounded-lg bg-navBG text-center shadow w-full md:max-w-[25vw] self-center"
                 >
                   <div className="flex flex-1 flex-col p-8">
                     <img
@@ -186,11 +186,11 @@ const IndexPage: React.FC<PageProps> = () => {
               ))}
             </div>
           ) : (
-            <div>
+            <div className="flex flex-wrap flex-row justify-center">
               {onlinePlayers.map((player, index) => (
                 <div
                   key={player.uuid}
-                  className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-navBG text-center shadow"
+                  className="flex flex-col m-4 rounded-lg bg-navBG text-center shadow w-full md:max-w-[25vw] self-center"
                 >
                   <div className="flex flex-1 flex-col p-8">
                     <img

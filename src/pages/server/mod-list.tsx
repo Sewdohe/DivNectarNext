@@ -45,7 +45,7 @@ const IndexPage: React.FC<PageProps> = () => {
     return (
       <WikiLayout>
         <H1>CraftNectar Plugins</H1>
-        <table className="table-auto overflow-scroll p-0 m-0 border-separate rounded-md border-1 border-tools-table-outline w-full">
+        <table className="p-0 table-fixed w-full overflow-hidden m-0 border-separate rounded-md border-1 border-tools-table-outline">
           <thead>
             <tr>
               <th>Name</th>
@@ -63,8 +63,8 @@ const IndexPage: React.FC<PageProps> = () => {
               <td className="px-2">
                 {plugin.version}
               </td>
-              <td className="px-2 m-1">
-                <a href={plugin.website}><FontAwesomeIcon icon={faCircleInfo} /></a>
+              <td className="px-2 !max-w-[24px]">
+                <a href={plugin.website}><FontAwesomeIcon className="!max-w-[24px]" icon={faCircleInfo} /></a>
               </td>
               <td className="px-2">
                 {plugin.authors[0]}
