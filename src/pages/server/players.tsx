@@ -141,7 +141,14 @@ const IndexPage: React.FC<PageProps> = () => {
     getOnlinePlayers();
     getAllPlayers();
 
-    openChatHook();
+    const interval = setInterval(() => {
+      getOnlinePlayers();
+      getAllPlayers();
+    }, 10000)
+    
+    return () => clearInterval(interval);
+
+    // openChatHook();
   }, []);
 
   useEffect(() => {}, [onlinePlayers]);
@@ -218,9 +225,6 @@ const IndexPage: React.FC<PageProps> = () => {
                         <b>Server Level:</b> {player.advLevel}
                       </dd>
                       <dd className="mt-3">
-                        {/* <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                      #{index + 1}
-                    </span> */}
                       </dd>
                     </dl>
                   </div>

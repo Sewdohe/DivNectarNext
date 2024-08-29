@@ -6,6 +6,7 @@ import {
   HomeIcon,
   UsersIcon,
   XMarkIcon,
+  MapIcon
 } from "@heroicons/react/24/outline";
 import { Providers } from "../providers";
 import NavBar from "../components/navbar";
@@ -30,6 +31,12 @@ const navigation = [
     icon: UsersIcon,
     current: false,
   },
+  {
+    name: "Server Map",
+    href: "/server/map",
+    icon: MapIcon,
+    current: false,
+  },
 ];
 
 function classNames(...classes: any[]) {
@@ -41,11 +48,11 @@ export default function WikiLayout({ children }: React.PropsWithChildren) {
 
   return (
     <main
-      style={{ backgroundImage: "url('/background.webp')" }}
-      className="dark min-h-[100vh] overflow-hidden text-foreground bg-yellow"
+      style={{ backgroundImage: "url('/background.webp')", minHeight: '100vh' }}
+      className="dark overflow-hidden text-foreground bg-yellow"
     >
       <Providers>
-        <div>
+        <div className="min-h-full">
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog
               as="div"
@@ -99,7 +106,7 @@ export default function WikiLayout({ children }: React.PropsWithChildren) {
                       </div>
                     </Transition.Child>
                     {/* Sidebar component, swap this element with another sidebar if you like */}
-                    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-navBG px-6 pb-2 ring-1 ring-white/10">
+                    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-navBG ring-1 ring-white/10">
                       <div className="flex h-16 shrink-0 items-center">
                         <img
                           className="h-8 w-auto"
@@ -194,9 +201,9 @@ export default function WikiLayout({ children }: React.PropsWithChildren) {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
 
-          <main className="lg:pl-72">
+          <main className="lg:pl-72 min-h-full">
             <NavBar />
-            <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+            <div className="min-h-full">{children}</div>
           </main>
         </div>
       </Providers>
