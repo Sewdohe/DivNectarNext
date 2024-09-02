@@ -26,6 +26,8 @@ export interface OnlinePlayer {
   saturation: number;
   gamemode: string;
   lastPlayed: number;
+  firstJoin: string;
+  aliveTime?: number;
 }
 
 const PlayersPage: React.FC<PageProps> = (props) => {
@@ -47,6 +49,8 @@ const PlayersPage: React.FC<PageProps> = (props) => {
     player.skillLevel = await getPlaceholder(uuid, "%auraskills_power%");
     player.alonsoLevel = await getPlaceholder(uuid, "%alonsolevels_level%");
     player.maxHealth = await getPlaceholder(uuid, "%player_max_health%");
+    player.firstJoin = await getPlaceholder(uuid, "%player_first_join_date%");
+    player.aliveTime = await getPlaceholder(uuid, "%player_minutes_lived%");
 
     setPlayer(player);
   };
@@ -110,6 +114,12 @@ const PlayersPage: React.FC<PageProps> = (props) => {
                 </dd>
                 <dd className="mt-3"></dd>
               </dl>
+              <dd>
+                <b>Player since:</b> {player.firstJoin}
+              </dd>
+              <dd>
+                <b>Alive for:</b> {player.aliveTime! / 60} hours
+              </dd>
             </div>
           </div>
         </div>
